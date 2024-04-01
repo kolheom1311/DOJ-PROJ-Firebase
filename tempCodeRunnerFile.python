@@ -1,0 +1,52 @@
+import heapq
+
+def huffman_code(data):
+  # Create a frequency table of the characters in the data.
+  frequencies = {}
+  for character in data:
+    if character not in frequencies:
+      frequencies[character] = 0
+    frequencies[character] += 1
+
+  # Create a priority queue of Huffman nodes, where the priority is the
+  # sum of the frequencies of the characters in the node.
+  nodes = []
+  for character, frequency in frequencies.items():
+    nodes.append((frequency, character))
+  heapq.heapify(nodes)
+
+  # While there are more than one node in the priority queue:
+  while len(nodes) > 1:
+    # Remove the two nodes with the lowest frequencies from the priority queue.
+    left_node = heapq.heappop(nodes)
+    right_node = heapq.heappop(nodes)
+
+    # Create a new node that represents the sum of the two nodes.
+    new_node = (left_node[0] + right_node[0], left_node[1], right_node[1])
+
+    # Add the new node to the priority queue.
+    heapq.heappush(nodes, new_node)
+
+  # The remaining node in the priority queue is the root of the Huffman tree.
+  root = nodes[0]
+
+  # Create a dictionary that maps characters to their Huffman codes.
+  codes = {}
+  def _build_code(node, code):
+    if node[1] is not None:
+      codes[node[1]] = code
+    if node[2] is not None:
+      _build_code(node[2], code + "0")
+      _build_code(node[3], code + "1")
+  _build_code(root, "")
+
+  return codes
+
+def encode(data, codes):
+  # Create a bit string that represents the Huffman code for the data.
+  encoded_data = ""
+  for character in data:
+    encoded_data += codes[character]
+
+  # Return the encoded data.
+  return encoded_
