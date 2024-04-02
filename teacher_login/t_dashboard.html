@@ -130,8 +130,8 @@ $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
               </div>
               <div class="flip-card-back">
 
-                <input type="file" id="upload" hidden />
-                <label class="attach-button" for="upload">Download</label>
+                <!-- <input type="file" id="upload" hidden /> -->
+                <label class="attach-button" onclick="downloadFiles()">Download</label>
                 <div class="modified-date">
                     dd/mm/yyyy  
                 </div>
@@ -239,7 +239,7 @@ $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
                  </div>
               <div class="flip-card-back">
 
-                <input type="file" id="upload" hidden />
+                <!-- <input type="file" id="upload" hidden /> -->
                 <label class="attach-button" for="upload">Download</label>
                 <div class="modified-date">
                     dd/mm/yyyy  
@@ -352,6 +352,7 @@ $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
     </section>
 
 </body>
+<script src="download.js"></script>
 <script src="dashboard.js">
 </script>
 </html>
